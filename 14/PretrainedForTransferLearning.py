@@ -16,7 +16,8 @@ dataset_size
 
 test_set_raw, valid_set_raw, train_set_raw = tfds.load(
     "tf_flowers",
-    split=["train[:10%]", "train[10%:25%]", "train[25%:]"],
+    split=[ tfds.Split.TRAIN.subsplit(tfds.percent[:10]), tfds.Split.TRAIN.subsplit(tfds.percent[10:25]),
+            tfds.Split.TRAIN.subsplit(tfds.percent[25:])],
     as_supervised=True)
 plt.figure(figsize=(12, 10))
 index = 0

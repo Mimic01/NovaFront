@@ -60,7 +60,7 @@ def imdb_dataset(filepaths_positive, filepaths_negative):
     labels = []
     for filepaths, label in ((filepaths_negative, 0), (filepaths_positive, 1)):
         for filepath in filepaths:
-            with open(filepath) as review_file:
+            with open(filepath, encoding="utf-8") as review_file:
                 reviews.append(review_file.read())
             labels.append(label)
     return tf.data.Dataset.from_tensor_slices(

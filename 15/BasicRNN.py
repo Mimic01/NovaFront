@@ -3,7 +3,6 @@ from tensorflow import keras
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib as mlp
 import tensorflow as tf
 from tensorflow.keras.layers import LayerNormalization
 

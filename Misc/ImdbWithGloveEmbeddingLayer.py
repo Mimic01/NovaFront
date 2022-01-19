@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import Embedding, Flatten, Dense
 import matplotlib.pyplot as plt
 
-imdb_dir = 'C:/Users/alexe/Downloads/aclImdb'
+imdb_dir = 'J:/Downloads/aclImdb'
 train_dir = os.path.join(imdb_dir, 'train')
 labels = []
 texts = []
@@ -45,11 +45,11 @@ data = data[indices]
 labels = labels[indices]
 
 x_train = data[:training_samples]
-y_train = labels[training_samples]
+y_train = labels[:training_samples]
 x_val = data[training_samples: training_samples + validation_samples]
 y_val = labels[training_samples: training_samples + validation_samples]
 
-glove_dir = 'C:/Users/alexe/Downloads'
+glove_dir = 'J:/Downloads/'
 embeddings_index = {}
 f = open(os.path.join(glove_dir, 'glove.6B.100d.txt'), encoding="utf8")
 for line in f:
@@ -108,9 +108,9 @@ model = Sequential()
 model.add(Embedding(max_words, embedding_dim, input_length=maxlen))
 model.add(Flatten())
 model.add(Dense(32, activation='relu'))
-model.add(1, activation='sigmoid')
+model.add(Dense(1, activation='sigmoid'))
 model.summary()
-model.compile(optimizer='rmsdrop', loss='binary_crossentropy', metrics=['acc'])
+model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
 history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val, y_val))
 
 plt.plot(epochs, acc, 'bo', label='Training acc')

@@ -101,7 +101,7 @@ validation_generator = test_datagen.flow_from_directory(validation_dir, target_s
 
 # Fitting with generator use steps_per_epoch to delimit the epoch, here batches are 20 samples, so it will take
 # 100 batches until you see your target of 2,000 samples.
-history = model.fit_generator(train_generator, steps_per_epoch=100, epochs=30, validation_data=validation_generator,
+history = model.fit(train_generator, steps_per_epoch=100, epochs=30, validation_data=validation_generator,
                               validation_steps=50)
 model.save('cats_and_dogs_small_1.h5')
 

@@ -1,11 +1,9 @@
-import tensorflow as tf
+import os
 
-tf.debugging.set_log_device_placement(True)
-print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-# Create some tensors
-a = tf.constant([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
-b = tf.constant([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
-c = tf.matmul(a, b)
+main_dir = "J:/Documents/Datahound/DirectorySearch"
 
-print(c)
+dirNames = ['SearchFolder.{}'.format(i) for i in range(1000)]
+for dirname in dirNames:
+    dirCreator = os.path.join(main_dir, dirname)
+    os.mkdir(dirCreator)
 
